@@ -5,18 +5,22 @@ import { Hero } from '../widgets/Hero.js'
 import { NavBar } from '../widgets/NavBar.js'
 
 const styles = StyleSheet.create({
-    contenedor: {
+    homeContainer: {
         flex: 1   
     },
 });
 
 export class HomeScreen extends React.Component {
     render(){
+        
         const { navigate } = this.props.navigation;
 
         return (
-            <View style = { styles.contenedor }>
-                <TopBar navigate = { navigate }></TopBar>
+            <View style = { styles.homeContainer }>
+                <TopBar
+                    navigate = { navigate } 
+                    topText = {'LOGIN'}>
+                </TopBar>
                 <Hero   navigate = { navigate }></Hero>
                 <NavBar navigate = { navigate }></NavBar>
             </View>

@@ -18,8 +18,10 @@ export class SiteContact extends React.Component {
 
         return(
             <View style = { styles.contenedor }>
-                <TopBar></TopBar>
-                <Text style = { styles.contenedor }>SiteContact</Text>
+                <TopBar
+                    topText = {'CONTACTO'}
+                    navigate = { navigate }></TopBar>
+                <Text style = { styles.mainContainer }>SiteContact</Text>
                 <NavBar navigate = { navigate }></NavBar>
             </View>
         )

@@ -18,7 +18,9 @@ export class SiteNewChallenge extends React.Component {
 
         return(
             <View style = { styles.contenedor }>
-                <TopBar></TopBar>
+                <TopBar
+                    topText = {'NUEVO RETO'}
+                    navigate = { navigate }></TopBar>
                 <Text style = { styles.mainContainer }>SiteNewChallenge</Text>
                 <NavBar navigate = { navigate }></NavBar>
             </View>

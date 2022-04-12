@@ -18,7 +18,9 @@ export class SiteProfile extends React.Component {
         
         return(
             <View style = { styles.contenedor }>
-                <TopBar></TopBar>
+                <TopBar
+                    topText = {'PERFIL'}
+                    navigate = { navigate }></TopBar>
                 <Text style = { styles.mainContainer }>SiteProfile</Text>
                 <NavBar navigate = { navigate }></NavBar>
             </View>

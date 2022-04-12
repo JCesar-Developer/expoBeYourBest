@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
-    header: {
-        paddingTop: 45,
+    topBarContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: 40,
         paddingBottom: 10,
         paddingLeft: 10,
         backgroundColor: '#35606a',   
@@ -12,6 +14,12 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         color:  '#fff',
         fontSize: 15
+    },
+    goHomeButton: {
+        textAlign: 'right',
+        alignItems: 'center',
+        backgroundColor: '#DDDDDD',
+        padding: 2
     }
 });
 
@@ -31,13 +39,42 @@ export class TopBar extends React.Component {
     //     }
     // }
 
+    constructor(props){
+        super(props);
+    }
+
+    isHomeScreen() {
+        
+    }
+
     render(){
         // let text=this.state.logged? 'Usuario Anonimo': this.props.msj;
-        let text = 'LOGIN'
+        let topText = this.props.topText
 
         return (
-            <View style={styles.header}>
-                <Text onPress={() => this.props.navigate('LoginScreen') } style={styles.headerText}>{text}</Text>
+            <View>
+
+                { this.props.topText == 'LOGIN' &&
+                <View style={styles.topBarContainer}>
+                    <Text 
+                        style={styles.headerText}
+                        onPress = {() => this.props.navigate('LoginScreen')}>
+                            {topText}
+                    </Text>
+                </View>
+                }
+                
+                { this.props.topText != 'LOGIN' &&
+                <View style={styles.topBarContainer}>
+                    <Text style={styles.headerText}>{topText}</Text>
+                    <TouchableOpacity 
+                        style={styles.goHomeButton}
+                        onPress = {() => this.props.navigate('HomeScreen')}>
+                        <Text>Home</Text>
+                    </TouchableOpacity>
+                </View>
+                }
+                
             </View>
         );
     }

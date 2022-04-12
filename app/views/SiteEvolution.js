@@ -18,7 +18,9 @@ export class SiteEvolution extends React.Component {
 
         return(
             <View style = { styles.contenedor }>
-                <TopBar></TopBar>
+                <TopBar
+                    topText = {'EVOLUCIÓN'}
+                    navigate = { navigate }></TopBar>
                 <Text style = { styles.mainContainer }>SiteEvolution</Text>
                 <NavBar navigate = { navigate }></NavBar>
             </View>
