@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { HomeScreen } from './app/views/HomeScreen'
+import { LoginScreen } from './app/views/LoginScreen'
+import { SiteContact } from './app/views/SiteContact'
+import { SiteEvolution } from './app/views/SiteEvolution'
+import { SiteNewChallenge } from './app/views/SiteNewChallenge'
+import { SiteProfile } from './app/views/SiteProfile'
+import { SiteAchievements } from './app/views/SiteAchievements'
+
+const Stack = createNativeStackNavigator();
+
+// --- NAVIGATION CONTAINERS --- //
+const MyStack = () => {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator screenOptions = {{ headerShown: false }}>
+
+                <Stack.Screen name = "HomeScreen" component = { HomeScreen } />
+                <Stack.Screen name = "LoginScreen" component = { LoginScreen } />
+
+                <Stack.Screen name = "SiteContact" component = { SiteContact } />
+                <Stack.Screen name = "SiteEvolution" component = { SiteEvolution } />
+                <Stack.Screen name = "SiteNewChallenge" component = { SiteNewChallenge } />
+                <Stack.Screen name = "SiteProfile" component = { SiteProfile } />
+                <Stack.Screen name = "SiteAchievements" component = { SiteAchievements } />
+
+
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+};
+
+// ---------- APP.JS ---------- //
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <MyStack />  
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
