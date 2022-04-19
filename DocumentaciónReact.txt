@@ -1,11 +1,6 @@
-============
---- EXPO ---
-============
+==================================
+--- DOCUMENTACION REACT NATIVE ---
+==================================
 
 expo init nomProyecto       //Crea un nuevo proyecto.
 expo start                  //Lanza un nuevo proyecto de EXPO.
-
-
-
-- CREAR OTRAS DÓS PÁGINAS
-- 
