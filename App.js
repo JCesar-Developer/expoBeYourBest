@@ -6,6 +6,7 @@ import { LoginScreen } from './app/views/LoginScreen'
 import { SiteContact } from './app/views/SiteContact'
 import { SiteEvolution } from './app/views/SiteEvolution'
 import { SiteNewChallenge } from './app/views/SiteNewChallenge'
+import { SiteChallengeDetails } from './app/views/SiteChallengeDetails'
 import { SiteProfile } from './app/views/SiteProfile'
 import { SiteAchievements } from './app/views/SiteAchievements'
 
@@ -23,9 +24,9 @@ const MyStack = () => {
                 <Stack.Screen name = "SiteContact" component = { SiteContact } />
                 <Stack.Screen name = "SiteEvolution" component = { SiteEvolution } />
                 <Stack.Screen name = "SiteNewChallenge" component = { SiteNewChallenge } />
+                <Stack.Screen name = "SiteChallengeDetails" component = { SiteChallengeDetails } />
                 <Stack.Screen name = "SiteProfile" component = { SiteProfile } />
                 <Stack.Screen name = "SiteAchievements" component = { SiteAchievements } />
-
 
             </Stack.Navigator>
         </NavigationContainer>

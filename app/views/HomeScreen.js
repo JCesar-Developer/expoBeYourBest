@@ -14,15 +14,19 @@ export class HomeScreen extends React.Component {
     render(){
         
         const { navigate } = this.props.navigation;
+        const topText = 'HomeScreen';
 
         return (
             <View style = { styles.homeContainer }>
                 <TopBar
                     navigate = { navigate } 
-                    topText = {'LOGIN'}>
+                    topText = { topText }>
                 </TopBar>
                 <Hero   navigate = { navigate }></Hero>
-                <NavBar navigate = { navigate }></NavBar>
+                <NavBar 
+                    navigate = { navigate }
+                    topText = { topText }>
+                </NavBar>
             </View>
         )
     }
