@@ -1,10 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import firebase from "./app/utils/Firebase";
 
+//SCREENS
 import { HomeScreen } from './app/views/HomeScreen'
 import { LoginScreen } from './app/views/LoginScreen'
 import { SiteContact } from './app/views/SiteContact';
-import firebase from "./app/utils/Firebase";
 import { SiteEvolution } from './app/views/SiteEvolution';
 import { SiteNewChallenge } from './app/views/SiteNewChallenge';
 import { SiteChallengeDetails } from './app/views/SiteChallengeDetails';
@@ -40,4 +41,5 @@ export default function App() {
     return (
         <MyStack />  
     );
+    
 }

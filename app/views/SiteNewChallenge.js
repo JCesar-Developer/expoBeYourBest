@@ -4,7 +4,7 @@ import { TopBar } from '../widgets/TopBar.js'
 import { NavBar } from '../widgets/NavBar.js'
 
 const styles = StyleSheet.create({
-    contenedor: {
+    screenContainer: {
         flex: 1   
     },
     mainContainer: {
@@ -17,7 +17,7 @@ export class SiteNewChallenge extends React.Component {
         const { navigate } = this.props.navigation;
 
         return(
-            <View style = { styles.contenedor }>
+            <View style = { styles.screenContainer }>
                 <TopBar
                     topText = {'NUEVO RETO'}
                     navigate = { navigate }></TopBar>

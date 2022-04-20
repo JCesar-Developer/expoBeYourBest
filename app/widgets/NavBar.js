@@ -4,7 +4,7 @@ import { shouldUseActivityState } from 'react-native-screens';
 
 const styles = StyleSheet.create({
     // DISPOSITION
-    contenedor: {
+    screenContainer: {
         flex: 1,
         backgroundColor: '#353535'
     },
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#383838'
     },
-    fila: {
+    navRow: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         backgroundColor: '#353535'       
     },
-    columna: {
+    navColumn: {
         width: '50%',
         height: '100%',
         justifyContent: 'center',
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
 
     // BOTTONS STYLES
-    boton: {
+    button: {
         height: '40%',
         width: '70%',
         backgroundColor: '#337657',
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    textoBoton: {
+    buttonText: {
         width: '80%',
         height: '80%',
         color: '#fff',
@@ -58,7 +58,7 @@ export class NavBar extends React.Component{
         const topText = this.props.topText;
 
         return ( 
-            <View style = { styles.contenedor }>
+            <View style = { styles.screenContainer }>
                 
                 {/* If is not EvolutionScreen or ChallengeDetailsScreen */}
                 { this.isntEvolution( topText ) }
@@ -78,42 +78,42 @@ export class NavBar extends React.Component{
     isntEvolution( topText ) {
         if ( topText != 'EVOLUCIÓN' &&  topText != 'DETALLE RETO' ) {
             return (
-                <View style = { styles.contenedor }>
+                <View style = { styles.screenContainer }>
 
                     {/* MENU_ROW_1 */}
-                    <View style = { styles.fila }>
+                    <View style = { styles.navRow }>
                         
 
                         {/* EVOLUTIÓN BUTTON */}
-                        <View style = { styles.columna }>
-                            <TouchableOpacity style = { styles.boton } onPress = {() => this.props.navigate('SiteEvolution')}>
-                                <Text style = { styles.textoBoton }>EVOLUCIÓN</Text>
+                        <View style = { styles.navColumn }>
+                            <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteEvolution')}>
+                                <Text style = { styles.buttonText }>EVOLUCIÓN</Text>
                             </TouchableOpacity>
                         </View>{/* END EVOLUTIÓN BUTTON */}
                         
                         {/* NEW_CHALLENGE BUTTON */}
-                        <View style = { styles.columna }>
-                            <TouchableOpacity style = { styles.boton } onPress = {() => this.props.navigate('SiteNewChallenge')}>
-                                <Text style = { styles.textoBoton }>NUEVO RETO</Text>
+                        <View style = { styles.navColumn }>
+                            <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteNewChallenge')}>
+                                <Text style = { styles.buttonText }>NUEVO RETO</Text>
                             </TouchableOpacity>
                         </View>{/* END NEW_CHALLENGE BUTTON */}
                     
                     </View>{/* END MENU_ROW_1 */}
 
                     {/* MENU_ROW_2 */}
-                    <View style = { styles.fila }>
+                    <View style = { styles.navRow }>
 
                         {/* PROFILE BUTTON */}
-                        <View style = { styles.columna }>
-                            <TouchableOpacity style = { styles.boton } onPress = {() => this.props.navigate('SiteProfile')}>
-                                <Text style = { styles.textoBoton }>PERFIL</Text>
+                        <View style = { styles.navColumn }>
+                            <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteProfile')}>
+                                <Text style = { styles.buttonText }>PERFIL</Text>
                             </TouchableOpacity>
                         </View>{/* END PROFILE BUTTON */}
 
                         {/* CONTACT BUTTON */}
-                        <View style = { styles.columna }>
-                            <TouchableOpacity style = { styles.boton } onPress = {() => this.props.navigate('SiteContact')}>
-                                <Text style = { styles.textoBoton }>CONTACTO</Text>
+                        <View style = { styles.navColumn }>
+                            <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteContact')}>
+                                <Text style = { styles.buttonText }>CONTACTO</Text>
                             </TouchableOpacity>
                         </View>{/* END CONTACT BUTTON */}
 
@@ -132,11 +132,11 @@ export class NavBar extends React.Component{
     isEvolution( topText ) {
         if ( topText == 'EVOLUCIÓN' ||  topText == 'DETALLE RETO' ) {
             return (
-                <View style = { styles.contenedor }>
+                <View style = { styles.screenContainer }>
                     {/* NEW_CHALLENGE BUTTON */}
                     <View style = { styles.oneRowContainer }>
-                        <TouchableOpacity style = { styles.boton } onPress = {() => this.props.navigate('SiteNewChallenge')}>
-                            <Text style = { styles.textoBoton }>NUEVO RETO</Text>
+                        <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteNewChallenge')}>
+                            <Text style = { styles.buttonText }>NUEVO RETO</Text>
                         </TouchableOpacity>
                     </View>{/* END NEW_CHALLENGE BUTTON */}
                 </View>

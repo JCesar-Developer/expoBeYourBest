@@ -4,7 +4,7 @@ import { TopBar } from '../widgets/TopBar.js'
 import { NavBar } from '../widgets/NavBar.js'
 
 const styles = StyleSheet.create({
-    contenedor: {
+    screenContainer: {
         flex: 1   
     },
     mainContainer: {
@@ -19,7 +19,7 @@ export class SiteChallengeDetails extends React.Component {
         const topText = 'DETALLE RETO'
 
         return (
-            <View style = { styles.contenedor }>
+            <View style = { styles.screenContainer }>
                 <TopBar
                     topText = { topText }
                     navigate = { navigate }>
