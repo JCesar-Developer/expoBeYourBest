@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
 });
 
 export class SiteEvolution extends React.Component {
+    
     render(){
         const { navigate } = this.props.navigation;
         const topText = 'EVOLUCIÓN';
