@@ -22,6 +22,7 @@ export class SiteEvolution extends React.Component {
                 <TopBar
                     topText = { topText }
                     navigate = { navigate }></TopBar>
+                {/* TODO: AQUÍ VAMOS A METER EL BOTÓN QUE EXPORTE LA BBDD */}
                 <Text style = { styles.mainContainer }>SiteEvolution</Text>
                 <NavBar 
                     topText = { topText }
