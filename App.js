@@ -3,12 +3,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { HomeScreen } from './app/views/HomeScreen'
 import { LoginScreen } from './app/views/LoginScreen'
-import { SiteContact } from './app/views/SiteContact'
-import { SiteEvolution } from './app/views/SiteEvolution'
-import { SiteNewChallenge } from './app/views/SiteNewChallenge'
-import { SiteChallengeDetails } from './app/views/SiteChallengeDetails'
-import { SiteProfile } from './app/views/SiteProfile'
-import { SiteAchievements } from './app/views/SiteAchievements'
+import { SiteContact } from './app/views/SiteContact';
+import firebase from "./app/utils/Firebase";
+import { SiteEvolution } from './app/views/SiteEvolution';
+import { SiteNewChallenge } from './app/views/SiteNewChallenge';
+import { SiteChallengeDetails } from './app/views/SiteChallengeDetails';
+import { SiteProfile } from './app/views/SiteProfile';
+import { SiteAchievements } from './app/views/SiteAchievements';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,7 @@ const MyStack = () => {
 
 // ---------- APP.JS ---------- //
 export default function App() {
+
     return (
         <MyStack />  
     );
