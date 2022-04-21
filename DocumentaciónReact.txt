@@ -6,7 +6,7 @@ expo init nomProyecto       //Crea un nuevo proyecto.
 expo start                  //Lanza un nuevo proyecto de EXPO.
 
 ==================================
---- DOCUMENTACION FIREBASE ---
+----- DOCUMENTACION FIREBASE -----
 ==================================
 
 CRUD: INSERT
@@ -41,3 +41,10 @@ async function getChallenges(db) {
     });    
 
 }
+
+==================================
+----------- PENDIENTES -----------
+==================================
+- Descargar una biblioteca de Iconos y colocarla en Assets.
+- Agregar ícono al Elemento segun su categoría.
+- Arreglar la vista del detalle de reto.

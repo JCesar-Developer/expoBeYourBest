@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { ListItem, Icon } from 'react-native-elements';
 
 import { TopBar } from '../widgets/TopBar.js'
 import { NavBar } from '../widgets/NavBar.js'
@@ -30,11 +31,45 @@ export class SiteChallengeDetails extends React.Component {
                 </TopBar>
                 
                 <View style = { styles.mainContainer }>
-                    <Text>{challenge.nombre}</Text>
-                    <Text>{challenge.detalle}</Text>
-                    <Text>{challenge.periodicidad}</Text>
-                    <Text>{challenge.tiempo}</Text>
-                    <Text>{challenge.completado}</Text>
+                    {/* --- TITLE --- */}
+                    <ListItem key = {challenge.id} bottomDivider >
+                        <Icon name='work' type='material' color='#517fa4'/>
+                        <ListItem.Title style = {{ fontWeight: 'bold', textTransform: 'uppercase' }}>
+                            {challenge.nombre}
+                        </ListItem.Title>
+                    </ListItem>
+                    {/* --- CATEGORY --- */}
+                    <ListItem key = {challenge.id} bottomDivider >
+                        <Icon name='bookmarks' type='material' color='gray'/>
+                        <ListItem.Content>
+                            <ListItem.Title>Categoria:</ListItem.Title>
+                            <ListItem.Subtitle>{challenge.categoria}</ListItem.Subtitle>
+                        </ListItem.Content>
+                    </ListItem>   
+                    {/* --- DETAILS --- */}             
+                    <ListItem key = {challenge.id} bottomDivider >
+                        <Icon name='description' type='material' color='gray'/>
+                        <ListItem.Content>
+                            <ListItem.Title>Detalle:</ListItem.Title>
+                            <ListItem.Subtitle>{challenge.detalle}</ListItem.Subtitle>
+                        </ListItem.Content>
+                    </ListItem>
+                    {/* --- TIME --- */}   
+                    <ListItem key = {challenge.id} bottomDivider >
+                        <Icon name='event' type='material' color='gray'/>
+                        <ListItem.Content>
+                            <ListItem.Title>Necesitas: {challenge.tiempo} horas, </ListItem.Title>
+                            <ListItem.Subtitle>para completar este desafío.</ListItem.Subtitle>
+                        </ListItem.Content>
+                    </ListItem>
+                    {/* --- DECISIONS --- */}   
+                    <ListItem key = {challenge.id} bottomDivider >
+                        <Icon name='schedule' type='material' color='gray'/>
+                        <ListItem.Subtitle>
+                            Dedicaras: {challenge.periodicidad} horas al día a está actividad. || 
+                            Has completado: {challenge.completado} de está actividad
+                        </ListItem.Subtitle>
+                    </ListItem>
                 </View>
                 
                 <NavBar 
