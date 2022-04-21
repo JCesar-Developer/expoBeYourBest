@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+
 import { TopBar } from '../widgets/TopBar.js'
 import { Hero } from '../widgets/Hero.js'
 import { NavBar } from '../widgets/NavBar.js'
 
 import firebase from '../utils/firebase.js';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 
 const styles = StyleSheet.create({
     screenContainer: {
@@ -13,11 +14,9 @@ const styles = StyleSheet.create({
     },
 });
 
-
-
 export class HomeScreen extends React.Component {
 
-    componentDidMount() { getChallenges(firebase.db); }
+    //componentDidMount() { getChallenges(firebase.db); }
 
     render(){
         

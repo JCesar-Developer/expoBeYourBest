@@ -12,19 +12,18 @@ const styles = StyleSheet.create({
     }
 });
 
-export class SiteChallengeDetails extends React.Component {
+export class SiteNewCategory extends React.Component {
+    
     render(){
-        
         const { navigate } = this.props.navigation;
-        const topText = 'DETALLE RETO'
+        const topText = 'NUEVA CATEGORÍA';
 
-        return (
+        return(
             <View style = { styles.screenContainer }>
                 <TopBar
                     topText = { topText }
-                    navigate = { navigate }>
-                </TopBar>
-                <Text style = { styles.mainContainer }>Detalles del reto</Text>
+                    navigate = { navigate }></TopBar>
+                <Text style = { styles.mainContainer }>SiteNewCategory</Text>
                 <NavBar 
                     topText = { topText }
                     navigate = { navigate }>

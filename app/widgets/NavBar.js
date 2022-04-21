@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#383838'
+        backgroundColor: '#383838',
     },
     navRow: {
         flex: 1,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 
     // BOTTONS STYLES
     button: {
-        height: '40%',
+        height: '50%',
         width: '70%',
         backgroundColor: '#337657',
         borderRadius: 10,
@@ -76,7 +76,7 @@ export class NavBar extends React.Component{
      * @returns complete_NavBar
      */
     isntEvolution( topText ) {
-        if ( topText != 'EVOLUCIÓN' &&  topText != 'DETALLE RETO' ) {
+        if ( topText != 'EVOLUCIÓN' &&  topText != 'DETALLE RETO' && topText != 'NUEVA CATEGORÍA' ) {
             return (
                 <View style = { styles.screenContainer }>
 
@@ -130,15 +130,24 @@ export class NavBar extends React.Component{
      * @returns newChallenge_NavBar
      */
     isEvolution( topText ) {
-        if ( topText == 'EVOLUCIÓN' ||  topText == 'DETALLE RETO' ) {
+        if ( topText == 'EVOLUCIÓN' ||  topText == 'DETALLE RETO' ||  topText == 'NUEVA CATEGORÍA'  ) {
             return (
                 <View style = { styles.screenContainer }>
+                    
                     {/* NEW_CHALLENGE BUTTON */}
                     <View style = { styles.oneRowContainer }>
                         <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteNewChallenge')}>
                             <Text style = { styles.buttonText }>NUEVO RETO</Text>
                         </TouchableOpacity>
                     </View>{/* END NEW_CHALLENGE BUTTON */}
+
+                    {/* NEW_CHALLENGE BUTTON */}
+                    <View style = { styles.oneRowContainer }>
+                        <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteNewCategory')}>
+                            <Text style = { styles.buttonText }>NUEVA CATEGORÍA</Text>
+                        </TouchableOpacity>
+                    </View>{/* END NEW_CHALLENGE BUTTON */}
+
                 </View>
             )
         }
