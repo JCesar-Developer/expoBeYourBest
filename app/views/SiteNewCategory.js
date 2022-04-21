@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         flex: 1   
     },
     mainContainer: {
-        flex: 4
+        flex: 1.5
     }
 });
 

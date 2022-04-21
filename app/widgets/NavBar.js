@@ -75,7 +75,7 @@ export class NavBar extends React.Component{
      * @returns complete_NavBar
      */
     isntEvolution( topText ) {
-        if ( topText != 'EVOLUCIÓN' &&  topText != 'DETALLE RETO' && topText != 'NUEVA CATEGORÍA' ) {
+        if ( topText != 'EVOLUCIÓN' &&  topText != 'DETALLE RETO' ) {
             return (
                 <View style = { styles.screenContainer }>
 
@@ -129,7 +129,7 @@ export class NavBar extends React.Component{
      * @returns newChallenge_NavBar
      */
     isEvolution( topText ) {
-        if ( topText == 'EVOLUCIÓN' ||  topText == 'DETALLE RETO' ||  topText == 'NUEVA CATEGORÍA'  ) {
+        if ( topText == 'EVOLUCIÓN' ||  topText == 'DETALLE RETO' ) {
             return (
                 <View style = { styles.screenContainer }>
                     
