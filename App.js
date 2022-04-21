@@ -1,6 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import firebase from "./app/utils/firebase";
 
 //SCREENS
 import { HomeScreen } from './app/views/HomeScreen'

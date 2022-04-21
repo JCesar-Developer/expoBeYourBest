@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
 import { TopBar } from '../widgets/TopBar.js'
 import { NavBar } from '../widgets/NavBar.js'
 
@@ -12,10 +13,13 @@ const styles = StyleSheet.create({
     }
 });
 
+
+
 export class SiteChallengeDetails extends React.Component {
     render(){
         
         const { navigate } = this.props.navigation;
+        const challenge = this.props.route.params.item;
         const topText = 'DETALLE RETO'
 
         return (
@@ -24,7 +28,15 @@ export class SiteChallengeDetails extends React.Component {
                     topText = { topText }
                     navigate = { navigate }>
                 </TopBar>
-                <Text style = { styles.mainContainer }>Detalles del reto</Text>
+                
+                <View style = { styles.mainContainer }>
+                    <Text>{challenge.nombre}</Text>
+                    <Text>{challenge.detalle}</Text>
+                    <Text>{challenge.periodicidad}</Text>
+                    <Text>{challenge.tiempo}</Text>
+                    <Text>{challenge.completado}</Text>
+                </View>
+                
                 <NavBar 
                     topText = { topText }
                     navigate = { navigate }>

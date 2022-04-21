@@ -37,6 +37,26 @@ export class TopBar extends React.Component {
         return (
             <View>
 
+                {/* If is not ChallengeDetailsScreen */}
+                { this.isntChallengeDetails( topText ) }
+
+                {/* If is not ChallengeDetailsScreen */}
+                { this.isChallengeDetails( topText ) }
+                
+            </View>
+        );
+    }
+
+    /**
+     * CONDITIONAL FUNCTION: If is not ChallengeDetailsScreen -> shows topBar.
+     * @param {*} topText 
+     * @returns TopBar with COMEBACK TO EVOLUTION button
+     */
+    isntChallengeDetails( topText ) {
+        if ( topText != 'DETALLE RETO' ) {
+            return (
+                <View>
+
                 {/* IF IT'S INTO LOGIN */}
                 { this.props.topText == 'HomeScreen' &&
                 <View style={styles.topBarContainer}>
@@ -59,27 +79,48 @@ export class TopBar extends React.Component {
                     </TouchableOpacity>
                 </View>
                 }{/* END IF IT ISN'T INTO LOGIN */}
-                
-            </View>
-        );
+
+                </View>
+            )
+        }
     }
+
+    /**
+     * CONDITIONAL FUNCTION: If is ChallengeDetailsScreen -> shows comebackToEvolution_button.
+     * @param {*} topText 
+     * @returns TopBar with COMEBACK TO EVOLUTION button
+     */
+     isChallengeDetails( topText ) {
+        if ( topText == 'DETALLE RETO' ) {
+            return (
+                <View>
+
+                {/* IF IT'S INTO LOGIN */}
+                { this.props.topText == 'HomeScreen' &&
+                <View style={styles.topBarContainer}>
+                    <Text 
+                        style={styles.headerText}
+                        onPress = {() => this.props.navigate('LoginScreen')}>
+                            Login
+                    </Text>
+                </View>
+                }{/* END IF IT'S INTO LOGIN */}
+                
+                {/* IF IT ISN'T INTO LOGIN */}
+                { this.props.topText != 'HomeScreen' &&
+                <View style={styles.topBarContainer}>
+                    <Text style={styles.headerText}>{topText}</Text>
+                    <TouchableOpacity 
+                        style={styles.goHomeButton}
+                        onPress = {() => this.props.navigate('SiteEvolution')}>
+                        <Text>Volver atras</Text>
+                    </TouchableOpacity>
+                </View>
+                }{/* END IF IT ISN'T INTO LOGIN */}
+
+                </View>
+            )
+        }
+    }
+
 }
-
-/** TRASH CODE
-    //TODO: TO LOGGED?
-    // constructor(props){
-    //     super(props);
-    //     this.state={logged:false};
-    // }
-
-    // changeLog = () => {
-    //     if (this.state.logged == false) {
-    //         this.setState({logged:true});
-    //     } else {
-    //         this.setState({logged:false});
-    //     }
-    // }
-
-    // let text=this.state.logged? 'Usuario Anonimo': this.props.msj;
-
- */

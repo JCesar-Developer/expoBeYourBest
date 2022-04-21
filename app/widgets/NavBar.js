@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Alert, TouchableOpacity } from 'react-native';
-import { shouldUseActivityState } from 'react-native-screens';
 
 const styles = StyleSheet.create({
     // DISPOSITION
