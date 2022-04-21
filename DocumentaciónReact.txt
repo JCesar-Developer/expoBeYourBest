@@ -4,3 +4,47 @@
 
 expo init nomProyecto       //Crea un nuevo proyecto.
 expo start                  //Lanza un nuevo proyecto de EXPO.
+
+==================================
+----- DOCUMENTACION FIREBASE -----
+==================================
+
+CRUD: INSERT
+------------
+addUser(firebase.db);
+
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+
+async function addUser(db) {
+    try {
+        const docRef = await addDoc(collection(db, "users"), {
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+        });
+        console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+}
+
+CRUD: READ
+------------
+
+getChallenges(firebase.db);
+
+async function getChallenges(db) {
+
+    const querySnapshot = await getDocs(collection(db, "challenges"));
+    querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+    });    
+
+}
+
+==================================
+----------- PENDIENTES -----------
+==================================
+- Descargar una biblioteca de Iconos y colocarla en Assets.
+- Agregar ícono al Elemento segun su categoría.
+- Arreglar la vista del detalle de reto.

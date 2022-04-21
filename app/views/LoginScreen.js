@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { TopBar } from '../widgets/TopBar.js';
 
 const styles = StyleSheet.create({
-    loginContainer: {
+    screenContainer: {
         flex: 1,   
     },
     mainContainer: {
@@ -22,7 +22,7 @@ export class LoginScreen extends React.Component {
         const { navigate } = this.props.navigation;
 
         return (
-            <View style = { styles.loginContainer} >
+            <View style = { styles.screenContainer} >
                 <TopBar
                     topText = {'REGISTRATE'}
                     navigate = { navigate }>

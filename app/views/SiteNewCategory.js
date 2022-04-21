@@ -12,18 +12,22 @@ const styles = StyleSheet.create({
     }
 });
 
-export class SiteContact extends React.Component {
+export class SiteNewCategory extends React.Component {
+    
     render(){
         const { navigate } = this.props.navigation;
+        const topText = 'NUEVA CATEGORÍA';
 
         return(
             <View style = { styles.screenContainer }>
                 <TopBar
-                    topText = {'CONTACTO'}
+                    topText = { topText }
+                    navigate = { navigate }></TopBar>
+                <Text style = { styles.mainContainer }>SiteNewCategory</Text>
+                <NavBar 
+                    topText = { topText }
                     navigate = { navigate }>
-                </TopBar>
-                <Text style = { styles.mainContainer }>SiteContact</Text>
-                <NavBar navigate = { navigate }></NavBar>
+                </NavBar>
             </View>
         )
     }

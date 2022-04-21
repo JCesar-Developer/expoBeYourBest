@@ -4,11 +4,11 @@ import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react
 const image = { uri: "https://reactjs.org/logo-og.png" };
 
 const styles = StyleSheet.create({
-    contenedor: {
+    screenContainer: {
         flex: 1.5,
         backgroundColor: '#353535'
     },
-    filaDestacada: {
+    highlighted_row: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -17,18 +17,18 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         backgroundColor: '#353535'
     },
-    imagenDestacada: {
+    highlighted_image: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
         height: '100%',
     },
-    botonDestacado: {
+    highlighted_button: {
         backgroundColor: "#000000c0",
         alignItems: 'center',
     },
-    textoDestacado: {
+    highlighted_text: {
         color: "white",
         fontSize: 42,
         lineHeight: 84,
@@ -41,13 +41,13 @@ export class Hero extends React.Component {
 
     render() {
         return (
-            <View style = { styles.contenedor }>
+            <View style = { styles.screenContainer }>
 
                 {/* MAIN CONTAINER */}
-                <View style = { styles.filaDestacada }>         
-                    <ImageBackground source={image} resizeMode="cover" style={styles.imagenDestacada}>
-                        <TouchableOpacity style = { styles.botonDestacado } onPress = {() => this.props.navigate('SiteAchievements')}>
-                                <Text style = { styles.textoDestacado }>BIENVENIDO A: "ERES EL MEJOR" APP</Text>
+                <View style = { styles.highlighted_row }>         
+                    <ImageBackground source={image} resizeMode="cover" style={styles.highlighted_image}>
+                        <TouchableOpacity style = { styles.highlighted_button } onPress = {() => this.props.navigate('SiteAchievements')}>
+                                <Text style = { styles.highlighted_text }>BIENVENIDO A: "ERES EL MEJOR" APP</Text>
                         </TouchableOpacity>
                     </ImageBackground>    
                 </View>{/* MAIN CONTAINER */}
