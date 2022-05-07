@@ -1,0 +1,59 @@
+//TODO: MODULARIZAR ESTE MODELO
+class Challenge {
+
+    constructor(user_id, id, categoria, nombre, detalle, periodicidad, tiempo, 
+        completado, estado){
+        this.user_id      = user_id;
+        this.id           = id;
+        this.categoria    = categoria;
+        this.nombre       = nombre;
+        this.detalle      = detalle;
+        this.periodicidad = periodicidad;
+        this.tiempo       = tiempo;
+        this.completado   = completado;
+        this.estado       = estado;
+    }
+
+}
+
+//const challenges = [];
+
+// const [ challenges, setRetos ] = useState({});
+
+// useEffect(() => {
+//     getChallenges(firebase.db);
+// }, []);
+
+// //TODO: MODULARIZAR ESTE CRUD
+// //PRIMERO LLAMAMOS A LA LISTA
+// async function getChallenges(db) {
+//     const querySnapshot = await getDocs(collection(db, "challenges"));
+   
+//     setRetos(querySnapshot.docs);
+   
+//     // querySnapshot.forEach((doc) => {
+//     //     const { user_id, id, categoria, nombre, detalle, periodicidad, 
+//     //         tiempo, completado, estado } = doc.data();
+//     //     challenges.push(
+//     //     new Challenge( user_id, id, categoria, nombre, detalle, periodicidad, 
+//     //         tiempo, completado, estado )
+//     //     )
+//     // });    
+
+
+// }
+
+//getChallenges(firebase.db)
+
+
+-----------------------------------------------------------------------------------------------------------
+/**
+ * This fuctions shows if there're data on a firebase collection.
+ * @param {*} db require FireStore Database
+ */
+async function getChallenges(db) {
+    const querySnapshot = await getDocs(collection(db, "challenges"));
+    querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+    });    
+}
