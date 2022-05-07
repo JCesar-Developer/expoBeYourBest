@@ -1,5 +1,5 @@
 import React, { useEffect, useState }  from 'react';
-import { StyleSheet, View, Text, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView, ScrollView,Alert } from 'react-native';
 import { Input, Icon } from 'react-native-elements';
 
 import TopBar from '../widgets/TopBar.js'
@@ -143,7 +143,7 @@ const Sitechallenge = ( props ) => {
 
     const saveValidChallenge = async ( newChallenge ) => {
 
-        const docRef = await addDoc(collection(firebase.db, "challenges"), {
+        await addDoc(collection(firebase.db, "challenges"), {
             nombre:       newChallenge.nombre,
             categoria:    newChallenge.categoria,
             detalle:      newChallenge.detalle,
@@ -153,7 +153,7 @@ const Sitechallenge = ( props ) => {
             user_id: 1,
         })
 
-        alert( `El nuevo reto ${ newChallenge.nombre } se ha agregado correctamente.` );
+        Alert.alert( 'El nuevo reto se ha agregado correctamente.' );
         navigate( 'SiteEvolution' );
 
     } //END SAVE_VALID_CHALLENGE()
