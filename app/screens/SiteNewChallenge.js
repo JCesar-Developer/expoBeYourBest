@@ -5,7 +5,7 @@ import { Input, Icon } from 'react-native-elements';
 import TopBar from '../widgets/TopBar.js'
 import { NavBar } from '../widgets/NavBar.js'
 
-import firebase from '../utils/firebase.js';
+import db from '../utils/Firebase.js';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 const styles = StyleSheet.create({
@@ -143,7 +143,7 @@ const Sitechallenge = ( props ) => {
 
     const saveValidChallenge = async ( newChallenge ) => {
 
-        await addDoc(collection(firebase.db, "challenges"), {
+        await addDoc(collection( db, "challenges"), {
             nombre:       newChallenge.nombre,
             categoria:    newChallenge.categoria,
             detalle:      newChallenge.detalle,

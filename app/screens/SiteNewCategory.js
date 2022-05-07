@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'end',
+        // justifyContent: 'end',
     }
 });
 

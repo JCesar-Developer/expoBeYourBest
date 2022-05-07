@@ -5,7 +5,7 @@ import { ListItem, Badge, Icon } from 'react-native-elements';
 import TopBar from '../widgets/TopBar.js';
 import { NavBar } from '../widgets/NavBar.js';
 
-import firebase from '../utils/firebase.js';
+import db from '../utils/Firebase.js';
 import { collection, getDocs } from 'firebase/firestore';
 
 const styles = StyleSheet.create({
@@ -35,7 +35,7 @@ const SiteEvolution = ( props ) => {
 
     const getChallenges = async () => {
         
-        const querySnapshot = await getDocs(collection( firebase.db, "challenges" ));
+        const querySnapshot = await getDocs(collection( db, "challenges" ));
         setChallenges(querySnapshot.docs);
         setLoading(false);
 

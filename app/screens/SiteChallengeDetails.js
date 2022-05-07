@@ -5,7 +5,7 @@ import { ListItem, Icon } from 'react-native-elements';
 import TopBar from '../widgets/TopBar.js'
 import { NavBar } from '../widgets/NavBar.js'
 
-import firebase from '../utils/firebase.js';
+import db from '../utils/Firebase.js';
 import { doc, getDoc } from "firebase/firestore";
 
 
@@ -38,7 +38,7 @@ const SiteChallengeDetails = ( props ) => {
 
     const getChallengeById = async () => {
 
-        const querySnapshot = await getDoc(doc( firebase.db, "challenges", challengeId));
+        const querySnapshot = await getDoc(doc( db, "challenges", challengeId));
         setChallenge( querySnapshot.data() );
         setLoading(false);
 
