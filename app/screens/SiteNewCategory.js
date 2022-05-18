@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, Picker, View, FlatList, 
+import { StyleSheet, Text, View, FlatList, 
         TouchableOpacity, Dimensions } from 'react-native';
 import { Icon, Input } from 'react-native-elements';
+import { Picker } from '@react-native-picker/picker';
 import icons from '../models/Icons';
 
 import TopBar from '../widgets/TopBar.js'
