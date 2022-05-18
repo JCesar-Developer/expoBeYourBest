@@ -1,16 +1,20 @@
-import React, { useEffect, useState }  from 'react';
-import { StyleSheet, View, Text, SafeAreaView, ScrollView,Alert } from 'react-native';
-import { Input, Icon } from 'react-native-elements';
+import React, { useState }  from 'react';
+import { StyleSheet, View, Text, SafeAreaView, 
+        ScrollView, Alert, Dimensions } from 'react-native';
+import { Input } from 'react-native-elements';
 
 import TopBar from '../widgets/TopBar.js'
 import { NavBar } from '../widgets/NavBar.js'
 
 import db from '../utils/Firebase.js';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
+
+const thisHeight = Dimensions.get("window").height * 1.057;
 
 const styles = StyleSheet.create({
     screenContainer: {
-        flex: 1   
+        // flex: 1,
+        height: thisHeight,
     },
     mainContainer: {
         flex: 8

@@ -19,3 +19,19 @@ const icons = [
 ]
 
 export default icons;
+
+    // const categories = [
+    //     {name: "Trabajo", description:"", renderCode: "work", color: "black"},
+    //     {name: "Paseo", description:"", renderCode: "map", color: "black"},
+    //     {name: "Deadline", description:"", renderCode: "timer", color: "black"},
+    //     {name: "Favorito", description:"", renderCode: "favorite", color: "black"},
+    //     {name: "Mascota", description:"", renderCode: "pets", color: "black"},
+    //     {name: "Deporte", description:"", renderCode: "fitness-center", color: "black"},
+    //     {name: "Familia", description:"", renderCode: "family-restroom", color: "black"},
+    //     {name: "Compras", description:"", renderCode: "local-grocery-store", color: "black"},
+    //     {name: "Degustación", description:"", renderCode: "restaurant-menu", color: "black"},
+    //     {name: "Voluntariado", description:"", renderCode: "volunteer-activism", color: "black"},
+    //     {name: "Positivismo", description:"", renderCode: "sentiment-satisfied-alt", color: "black"},
+    //     {name: "Fotografía", description:"", renderCode: "camera-alt", color: "black"},
+    //     {name: "Meditación", description:"", renderCode: "self-improvement", color: "black"},
+    // ]

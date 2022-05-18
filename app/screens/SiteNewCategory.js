@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, Picker, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, Picker, View, FlatList, 
+        TouchableOpacity, Dimensions } from 'react-native';
 import { Icon, Input } from 'react-native-elements';
 import icons from '../models/Icons';
 
 import TopBar from '../widgets/TopBar.js'
 import { NavBar } from '../widgets/NavBar.js'
 
+const thisHeight = Dimensions.get("window").height * 1.057;
+
 const styles = StyleSheet.create({
     screenContainer: {
-        flex: 1   
+        // flex: 1,  
+        height: thisHeight,
     },
     mainContainer: {
         flex: 8
@@ -254,21 +258,3 @@ const SiteNewCategory = ( props ) => {
 // ------------------------------------------------------------------------------------ //
 
 export default SiteNewCategory;
-
-
-    // const categories = [
-    //     {name: "Trabajo", description:"", renderCode: "work", color: "black"},
-    //     {name: "Paseo", description:"", renderCode: "map", color: "black"},
-    //     {name: "Deadline", description:"", renderCode: "timer", color: "black"},
-    //     {name: "Favorito", description:"", renderCode: "favorite", color: "black"},
-    //     {name: "Mascota", description:"", renderCode: "pets", color: "black"},
-    //     {name: "Deporte", description:"", renderCode: "fitness-center", color: "black"},
-    //     {name: "Familia", description:"", renderCode: "family-restroom", color: "black"},
-    //     {name: "Compras", description:"", renderCode: "local-grocery-store", color: "black"},
-    //     {name: "Degustación", description:"", renderCode: "restaurant-menu", color: "black"},
-    //     {name: "Voluntariado", description:"", renderCode: "volunteer-activism", color: "black"},
-    //     {name: "Positivismo", description:"", renderCode: "sentiment-satisfied-alt", color: "black"},
-    //     {name: "Fotografía", description:"", renderCode: "camera-alt", color: "black"},
-    //     {name: "Meditación", description:"", renderCode: "self-improvement", color: "black"},
-
-    // ]
