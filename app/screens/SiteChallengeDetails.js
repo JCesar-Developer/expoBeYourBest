@@ -100,7 +100,7 @@ const SiteChallengeDetails = ( props ) => {
                     <ListItem bottomDivider >
                         <Icon name='schedule' type='material' color='gray'/>
                         <ListItem.Subtitle>
-                            Dedicaras: {challenge.periodicidad} horas al día a está actividad. <br/>
+                            Dedicaras: {challenge.periodicidad} horas al día a está actividad. {"\n"}
                             Has completado: {challenge.completado} de está actividad.
                         </ListItem.Subtitle>
                     </ListItem>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, ScrollView, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, FlatList, ActivityIndicator, LogBox } from 'react-native';
 import { ListItem, Badge, Icon } from 'react-native-elements';
 
 import TopBar from '../widgets/TopBar.js';
@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
         flex: 8
     }
 });
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 const SiteEvolution = ( props ) => {
 
@@ -60,12 +62,10 @@ const SiteEvolution = ( props ) => {
             
                 :
 
-                    <ScrollView>
-                        <FlatList 
-                            data={ challenges } 
-                            extraData={ challenges }
-                            renderItem={ (item) => renderChallengesList( item, navigate ) } />
-                    </ScrollView>
+                    <FlatList 
+                        data={ challenges } 
+                        extraData={ challenges }
+                        renderItem={ (item) => renderChallengesList( item, navigate ) } />
 
                 }
             </View>
@@ -115,8 +115,8 @@ const renderChallengesList = ( { item }, navigate ) => {
             {/** BADGET: %PROGRESS */}
             <Badge
                 value = {item.data().completado}
-                badgeStyle = {{ backgroundColor: '#35606a', paddingTop: 15, 
-                paddingBottom: 15, paddingStart: 8, paddingEnd: 8 }}  
+                badgeStyle = {{ backgroundColor: '#35606a', paddingHorizontal: 8,
+                            height: 30 }}  
                 textStyle = {{ color: 'white' }}/>
             {/** END BADGET: %PROGRESS */}
 
