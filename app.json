@@ -18,9 +18,11 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.popAppMovile.beYourBestIOS",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.popAppMovile.beYourBestAndroid",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
