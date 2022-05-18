@@ -57,7 +57,7 @@ const SiteEvolution = ( props ) => {
             <View style = { styles.mainContainer }>
                 { loading ? 
                 
-                    <ActivityIndicator size="large" color="#9e9e9e" 
+                    <ActivityIndicator size={80} color="#9e9e9e" 
                     style={{alignItems: 'center', flex:1}}/>
             
                 :
