@@ -65,3 +65,11 @@ MAIN SCREEN
 SCREEN EVOLUTION
 ----------------
 - Que el ícono se importe directamente desde una librería de íconos seleccionada por la categoría.
+
+
+--------------------------------------------------
+Try to build using aes @baifachuan
+https://blog.expo.dev/expo-sdk-45-f4e332954a68
+
+› npm install -g eas-cli
+› eas build -p android
