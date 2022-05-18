@@ -3,6 +3,7 @@
     "name": "beYourBest",
     "slug": "beYourBest",
     "version": "1.0.0",
+    "platforms": ["ios", "android"],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
