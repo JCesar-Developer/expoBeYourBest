@@ -33,14 +33,10 @@ const styles = StyleSheet.create({
     button: {
         height: '50%',
         width: '70%',
-        backgroundColor: '#337657',
         borderRadius: 10,
         justifyContent: 'center',
-        alignItems: 'center',
     },
-    buttonText: {
-        width: '80%',
-        height: '80%',
+    textBtn: {
         color: '#fff',
         fontSize: 18,
         textAlign: 'center',
@@ -54,17 +50,23 @@ export class NavBar extends React.Component{
 
     render(){
 
-        const topText = this.props.topText;
+        const topText       = this.props.topText;
+        const navBarStyle   = this.props.navBarStyle;
+
+        const BtnTittle     = this.props.BtnTittle;
+        const BtnBgColor    = this.props.BtnBgColor;
+        const onPress       = this.props.onPress;
+
 
         return ( 
             <View style = { styles.screenContainer }>
                 
                 {/* If is not EvolutionScreen or ChallengeDetailsScreen */}
-                { this.isntEvolution( topText ) }
+                { this.show_complete_navBar( navBarStyle ) }
 
                 {/* If is EvolutionScreen or ChallengeDetailsScreen */}
-                { this.isEvolution( topText ) }
-                
+                { this.show_One_Colum( navBarStyle ) }
+
             </View>
         )
     }
@@ -74,26 +76,28 @@ export class NavBar extends React.Component{
      * @param {*} topText 
      * @returns complete_NavBar
      */
-    isntEvolution( topText ) {
-        if ( topText != 'EVOLUCIÓN' &&  topText != 'DETALLE RETO' ) {
+     show_complete_navBar( navBarStyle ) {
+        if ( navBarStyle == 'COMPLETE_NAVBAR' ) {
             return (
                 <View style = { styles.screenContainer }>
 
                     {/* MENU_ROW_1 */}
                     <View style = { styles.navRow }>
-                        
+                    
 
                         {/* EVOLUTIÓN BUTTON */}
                         <View style = { styles.navColumn }>
-                            <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteEvolution')}>
-                                <Text style = { styles.buttonText }>EVOLUCIÓN</Text>
+                            <TouchableOpacity style = {[ styles.button, { backgroundColor: '#337657'} ]} 
+                            onPress = {() => this.props.navigate('SiteEvolution')}>
+                                <Text style = { styles.textBtn }>EVOLUCIÓN</Text>
                             </TouchableOpacity>
                         </View>{/* END EVOLUTIÓN BUTTON */}
                         
                         {/* NEW_CHALLENGE BUTTON */}
                         <View style = { styles.navColumn }>
-                            <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteNewChallenge')}>
-                                <Text style = { styles.buttonText }>NUEVO RETO</Text>
+                            <TouchableOpacity style = {[ styles.button, { backgroundColor: '#337657'} ]} 
+                            onPress = {() => this.props.navigate('SiteNewChallenge')}>
+                                <Text style = { styles.textBtn }>NUEVO RETO</Text>
                             </TouchableOpacity>
                         </View>{/* END NEW_CHALLENGE BUTTON */}
                     
@@ -104,15 +108,17 @@ export class NavBar extends React.Component{
 
                         {/* PROFILE BUTTON */}
                         <View style = { styles.navColumn }>
-                            <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteProfile')}>
-                                <Text style = { styles.buttonText }>PERFIL</Text>
+                            <TouchableOpacity style = {[ styles.button, { backgroundColor: '#337657'} ]} 
+                            onPress = {() => this.props.navigate('SiteProfile')}>
+                                <Text style = { styles.textBtn }>PERFIL</Text>
                             </TouchableOpacity>
                         </View>{/* END PROFILE BUTTON */}
 
                         {/* CONTACT BUTTON */}
                         <View style = { styles.navColumn }>
-                            <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteContact')}>
-                                <Text style = { styles.buttonText }>CONTACTO</Text>
+                            <TouchableOpacity style = {[ styles.button, { backgroundColor: '#337657'} ]}  
+                            onPress = {() => this.props.navigate('SiteContact')}>
+                                <Text style = { styles.textBtn }>CONTACTO</Text>
                             </TouchableOpacity>
                         </View>{/* END CONTACT BUTTON */}
 
@@ -123,30 +129,17 @@ export class NavBar extends React.Component{
         }
     }
 
-    /**
-     * CONDITIONAL FUNCTION: If is EvolutionScreen or ChallengeDetailsScreen-> Show newChallenge_NavBar.
-     * @param {*} topText 
-     * @returns newChallenge_NavBar
-     */
-    isEvolution( topText ) {
-        if ( topText == 'EVOLUCIÓN' ||  topText == 'DETALLE RETO' ) {
+    show_One_Colum( navBarStyle ) {
+        if ( navBarStyle == 'ONE-COL-BTN' ) {
             return (
                 <View style = { styles.screenContainer }>
-                    
-                    {/* NEW_CHALLENGE BUTTON */}
                     <View style = { styles.oneRowContainer }>
-                        <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteNewChallenge')}>
-                            <Text style = { styles.buttonText }>NUEVO RETO</Text>
+                        <TouchableOpacity onPress={this.props.onPress} style = { [styles.button, {
+                            backgroundColor: this.props.BtnBgColor ? this.props.BtnBgColor : '#337657',
+                        }] }>
+                            <Text style = { styles.textBtn }>{this.props.BtnTittle}</Text>
                         </TouchableOpacity>
-                    </View>{/* END NEW_CHALLENGE BUTTON */}
-
-                    {/* NEW_CHALLENGE BUTTON */}
-                    <View style = { styles.oneRowContainer }>
-                        <TouchableOpacity style = { styles.button } onPress = {() => this.props.navigate('SiteNewCategory')}>
-                            <Text style = { styles.buttonText }>NUEVA CATEGORÍA</Text>
-                        </TouchableOpacity>
-                    </View>{/* END NEW_CHALLENGE BUTTON */}
-
+                    </View>
                 </View>
             )
         }

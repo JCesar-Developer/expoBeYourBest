@@ -24,103 +24,56 @@ const styles = StyleSheet.create({
     }
 });
 
-export class TopBar extends React.Component {
+const TopBar = ( props ) => {
 
-    constructor(props){
-        super(props);
-    }
+    const navigate  = props.navigate;   //IT'S NECESARY, BECAUSE THIS WIDGET ISN'T IN THE STACKSCREEN
+    const topText   = props.topText;
+    const onPress   = props.onPress;
+    const textBtn   = props.textBtn;
 
-    render(){
+    // ------------------------------------------------------------------------------------ //
+    // ----------------------------------- MAIN FUNCTION ---------------------------------- //
+    // ------------------------------------------------------------------------------------ //
 
-        let topText = this.props.topText
+    return (
+        <View>
 
-        return (
             <View>
 
-                {/* If is not ChallengeDetailsScreen */}
-                { this.isntChallengeDetails( topText ) }
+                {/* IF IT'S SHOWING HOMESCREEN */}
+                { topText == 'HomeScreen' &&
+                <View style={styles.topBarContainer}>
+                    <Text 
+                    style={styles.headerText}
+                    onPress = {() => navigate('LoginScreen')}>
+                        Login
+                    </Text>
+                </View>
+                }{/* END IF IT'S SHOWING HOMESCREEN */}
 
-                {/* If is not ChallengeDetailsScreen */}
-                { this.isChallengeDetails( topText ) }
-                
+                {/* TODO: MODULARIZAR ESTE BOTÓN */}
+
+                {/* IF ISN'T SHOWING HOMESCREEN */}
+                { topText != 'HomeScreen' &&
+                <View style={styles.topBarContainer}>
+                    <Text style={styles.headerText}>{ topText }</Text>
+                    <TouchableOpacity 
+                        style={styles.goHomeButton}
+                        onPress = { onPress }>
+                        <Text>{ textBtn }</Text>
+                    </TouchableOpacity>
+                </View>
+                }{/* END IF ISN'T SHOWING HOMESCREEN */}
+
             </View>
-        );
-    }
+            
+        </View>
+    );
 
-    /**
-     * CONDITIONAL FUNCTION: If is not ChallengeDetailsScreen -> shows topBar.
-     * @param {*} topText 
-     * @returns TopBar with COMEBACK TO EVOLUTION button
-     */
-    isntChallengeDetails( topText ) {
-        if ( topText != 'DETALLE RETO' ) {
-            return (
-                <View>
-
-                {/* IF IT'S INTO LOGIN */}
-                { this.props.topText == 'HomeScreen' &&
-                <View style={styles.topBarContainer}>
-                    <Text 
-                        style={styles.headerText}
-                        onPress = {() => this.props.navigate('LoginScreen')}>
-                            Login
-                    </Text>
-                </View>
-                }{/* END IF IT'S INTO LOGIN */}
-                
-                {/* IF IT ISN'T INTO LOGIN */}
-                { this.props.topText != 'HomeScreen' &&
-                <View style={styles.topBarContainer}>
-                    <Text style={styles.headerText}>{topText}</Text>
-                    <TouchableOpacity 
-                        style={styles.goHomeButton}
-                        onPress = {() => this.props.navigate('HomeScreen')}>
-                        <Text>Home</Text>
-                    </TouchableOpacity>
-                </View>
-                }{/* END IF IT ISN'T INTO LOGIN */}
-
-                </View>
-            )
-        }
-    }
-
-    /**
-     * CONDITIONAL FUNCTION: If is ChallengeDetailsScreen -> shows comebackToEvolution_button.
-     * @param {*} topText 
-     * @returns TopBar with COMEBACK TO EVOLUTION button
-     */
-     isChallengeDetails( topText ) {
-        if ( topText == 'DETALLE RETO' ) {
-            return (
-                <View>
-
-                {/* IF IT'S INTO LOGIN */}
-                { this.props.topText == 'HomeScreen' &&
-                <View style={styles.topBarContainer}>
-                    <Text 
-                        style={styles.headerText}
-                        onPress = {() => this.props.navigate('LoginScreen')}>
-                            Login
-                    </Text>
-                </View>
-                }{/* END IF IT'S INTO LOGIN */}
-                
-                {/* IF IT ISN'T INTO LOGIN */}
-                { this.props.topText != 'HomeScreen' &&
-                <View style={styles.topBarContainer}>
-                    <Text style={styles.headerText}>{topText}</Text>
-                    <TouchableOpacity 
-                        style={styles.goHomeButton}
-                        onPress = {() => this.props.navigate('SiteEvolution')}>
-                        <Text>Volver atras</Text>
-                    </TouchableOpacity>
-                </View>
-                }{/* END IF IT ISN'T INTO LOGIN */}
-
-                </View>
-            )
-        }
-    }
+    // ------------------------------------------------------------------------------------ //
+    // ---------------------------------- OTHER FUNTIONS ---------------------------------- //
+    // ------------------------------------------------------------------------------------ //
 
 }
+
+export default TopBar;

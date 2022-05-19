@@ -2,15 +2,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //SCREENS
-import { HomeScreen } from './app/views/HomeScreen'
-import { LoginScreen } from './app/views/LoginScreen'
-import { SiteContact } from './app/views/SiteContact';
-import { SiteEvolution } from './app/views/SiteEvolution';
-import { SiteNewChallenge } from './app/views/SiteNewChallenge';
-import { SiteNewCategory } from './app/views/SiteNewCategory';
-import { SiteChallengeDetails } from './app/views/SiteChallengeDetails';
-import { SiteProfile } from './app/views/SiteProfile';
-import { SiteAchievements } from './app/views/SiteAchievements';
+import HomeScreen from './app/screens/HomeScreen'
+import LoginScreen from './app/screens/LoginScreen'
+import SiteContact from './app/screens/SiteContact';
+import SiteEvolution from './app/screens/SiteEvolution';
+import SiteNewChallenge from './app/screens/SiteNewChallenge';
+import SiteNewCategory from './app/screens/SiteNewCategory';
+import SiteChallengeDetails from './app/screens/SiteChallengeDetails';
+import SiteProfile from './app/screens/SiteProfile';
+import SiteAchievements from './app/screens/SiteAchievements';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,3 +44,9 @@ export default function App() {
     );
     
 }
+
+/**
+ * PENDIENTES:
+ * - Terminar de implementar el categorias.
+ * - 
+ */

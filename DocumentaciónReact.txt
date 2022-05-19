@@ -43,8 +43,33 @@ async function getChallenges(db) {
 }
 
 ==================================
------------ PENDIENTES -----------
+------ LIBRERÍAS DE INTERES ------
 ==================================
-- Descargar una biblioteca de Iconos y colocarla en Assets.
-- Agregar ícono al Elemento segun su categoría.
-- Arreglar la vista del detalle de reto.
+- MATERIAL-ICONS:   https://reactnativeelements.com/docs/3.4.2/icon
+- GOOGLE-ICONS:     https://fonts.google.com/icons?selected=Material+Icons
+
+
+==================================
+------ PENDIENTES ------
+==================================
+-----------
+MAIN SCREEN
+-----------
+- Cambiar el Ícono del botón de Login.
+- Agregar el nombre del usuario logueado al MainScreen
+- Cambiar el Login por una hamburguesa(3 puntos) que se despliegue y muestre:
+    - Perfil de usuario. 
+    - Log Out.
+
+----------------
+SCREEN EVOLUTION
+----------------
+- Que el ícono se importe directamente desde una librería de íconos seleccionada por la categoría.
+
+
+--------------------------------------------------
+Try to build using aes @baifachuan
+https://blog.expo.dev/expo-sdk-45-f4e332954a68
+
+› npm install -g eas-cli
+› eas build -p android
