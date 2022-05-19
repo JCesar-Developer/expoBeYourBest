@@ -5,7 +5,7 @@ import { ListItem, Badge, Icon } from 'react-native-elements';
 import TopBar from '../widgets/TopBar.js';
 import { NavBar } from '../widgets/NavBar.js';
 
-import db from '../utils/Firebase.js';
+import { db } from '../utils/Firebase.js';
 import { collection, getDocs } from 'firebase/firestore';
 
 const styles = StyleSheet.create({

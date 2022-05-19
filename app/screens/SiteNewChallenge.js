@@ -6,7 +6,7 @@ import { Input } from 'react-native-elements';
 import TopBar from '../widgets/TopBar.js'
 import { NavBar } from '../widgets/NavBar.js'
 
-import db from '../utils/Firebase.js';
+import { db } from '../utils/Firebase.js';
 import { collection, addDoc } from 'firebase/firestore';
 
 const thisHeight = Dimensions.get("window").height * 1.057;

@@ -73,3 +73,5 @@ https://blog.expo.dev/expo-sdk-45-f4e332954a68
 
 › npm install -g eas-cli
 › eas build -p android
+
+ANDROID FONTS: https://github.com/react-native-training/react-native-fonts
