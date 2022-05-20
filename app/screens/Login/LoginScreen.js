@@ -3,10 +3,10 @@ import { StyleSheet, Image, Dimensions, View,
         SafeAreaView, useWindowDimensions, Alert } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 
-import TopBar from '../widgets/TopBar.js';
+import TopBar from '../../widgets/TopBar.js';
 
-import { app } from '../utils/Firebase.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { app } from '../../utils/Firebase.js';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 
 const thisHeight = Dimensions.get("window").height * 1.057;
@@ -30,7 +30,15 @@ const styles = StyleSheet.create({
     },
     input: {
         width: '85%',
-    }
+    },
+    errorStyle: {
+        color: '#FF6666',
+        fontSize: 10,
+        marginLeft: 0,
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 0,
+    },
 });
 
 
@@ -38,22 +46,59 @@ const LoginScreen = ( props ) => {
 
     const { height } = useWindowDimensions();
     const { navigate } = props.navigation;
+    const auth = getAuth(app);
 
+    //USER LOGIN VALUES
     const [ email, setEmail ] = React.useState('');
     const [ password, setPassword ] = React.useState('');
 
-    const auth = getAuth(app);
+    //USER LOGIN ERROR MESSAGES
+    const [ input_error_email, setErrorEmail ] = React.useState('');
+    const [ input_error_password, setErrorPassword ] = React.useState('');
+
+    const onSignInPressed = () => {
+        const isValid = signInValidation();
+
+        if ( isValid ) {
+            handleSignIn();
+        }
+
+    }
+
+    const signInValidation = () => {
+        
+        let canSave = false;
+
+        //VALIDATE: EMAIL
+        if( email === '' ){
+            canSave = false;
+            setErrorEmail( 'Error. Por favor, ingresa tu correo.' );
+            return canSave;
+        } else {
+            canSave = true;
+            setErrorEmail('');
+        } //END VALIDATE: EMAIL
+
+        //VALIDATE: PASSWORD
+        if( password === '' ){
+            canSave = false;
+            setErrorPassword( 'Error. Por favor, ingresa tu contraseña.' );
+        } else {
+            canSave = true;
+            setErrorPassword('');
+        } //END VALIDATE: PASSWORD
+
+        return canSave;
+
+    }
 
     const handleSignIn = () => {
         const successSignIn = signInWithEmailAndPassword( auth, email, password );
         successSignIn
-            .then(( userCredential ) => {
-                console.log('Signed in!');
-                const user = userCredential.user;
-                console.log(user);
+            .then( () => {
                 navigate('HomeScreen');
             })
-            .catch( error => {
+            .catch( ( error ) => {
                 console.log( error );
                 Alert.alert( error.message );
             })
@@ -63,42 +108,36 @@ const LoginScreen = ( props ) => {
         console.warn('Forgor Password Pressed');
     }
 
-    const handleCreateAccount = () => {
-        const successSignUp = createUserWithEmailAndPassword( auth, email, password );
-        successSignUp
-        .then(( userCredential ) => {
-            console.log('Cuenta creada!');
-            const user = userCredential.user;
-            console.log( user );
-        })
-        .catch( error => {
-            console.log( error );
-            Alert.alert( error.message );
-        })
+    const onSignUpPressed = () => {
+        navigate('RegisterScreen');
     }
 
     return (
         <SafeAreaView style = { styles.screenContainer} >
             <TopBar
                 topText     = '"BE YOUR BEST"'
-                topButton   = { true }
             />
 
+            {/* MAIN CONTAINER */}
             <View style = { styles.mainContainer} >
 
-                {/* IMAGEN */}
+                {/* IMAGE */}
                 <Image
-                    source={ require('../../assets/images/Logo.png') }
+                    source={ require('../../../assets/images/Logo.png') }
                     style={[ styles.logo, { height: height * 0.3 } ]}
                 />
+                {/* END IMAGE */}
                 
+                {/* SIGN IN FORM */}
                 <View style={ styles.input }>
                     {/* LOGIN INPUT USERNAME */}
                     <Input
                         placeholder='Email'
                         containerStyle={{ marginBottom: -10}}
                         inputStyle={{ fontSize: 15, color: 'white' }}
-                        leftIcon={{ name: 'account-circle' }}
+                        leftIcon={{ name: 'mail' }}
+                        errorMessage={ input_error_email }
+                        errorStyle={ styles.errorStyle }
                         onChangeText={ (value) => setEmail(value) }
                     />
                     {/* END LOGIN INPUT USERNAME */}
@@ -110,6 +149,8 @@ const LoginScreen = ( props ) => {
                         inputStyle={{ fontSize: 15, color: 'white' }}
                         leftIcon={{ name: 'lock' }}
                         secureTextEntry
+                        errorMessage={ input_error_password }
+                        errorStyle={ styles.errorStyle }
                         onChangeText={ (value) => setPassword(value) }
                     />
                     {/* END LOGIN INPUT PASSWORD */}
@@ -118,7 +159,7 @@ const LoginScreen = ( props ) => {
                     <Button
                         title="Entrar"
                         buttonStyle={{ backgroundColor: '#337657' }}
-                        onPress={ handleSignIn }
+                        onPress={ onSignInPressed }
                     />
                     {/* END LOGIN BUTTON SIGN IN */}
 
@@ -155,18 +196,16 @@ const LoginScreen = ( props ) => {
                     {/* LOGIN BUTTON SIGN UP */}
                     <Button
                         title="Aún no tengo una cuenta"
-                        containerStyle={{ marginTop: 0 }}
+                        containerStyle={{ marginTop: 10 }}
                         buttonStyle={{ backgroundColor: 'transparent' }}
                         titleStyle={{ color: 'white', fontFamily: 'normal', fontStyle: 'italic', fontSize: 12 }}
-                        onPress={ handleCreateAccount }
+                        onPress={ onSignUpPressed }
                     />
                     {/* END LOGIN BUTTON SIGN UP */}
-
                 </View>
-
-                {/* BOTON INPUT */}
-
+                {/* END SIGN IN FORM */}
             </View>
+            {/* END MAIN CONTAINER */}
 
         </SafeAreaView>
     )

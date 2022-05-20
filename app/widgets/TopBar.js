@@ -29,9 +29,12 @@ const styles = StyleSheet.create({
 const TopBar = ( props ) => {
 
     const navigate  = props.navigate;   //IT'S NECESARY, BECAUSE THIS WIDGET ISN'T IN THE STACKSCREEN
-    const topText   = props.topText;
-    const onPress   = props.onPress;
-    const textBtn   = props.textBtn;
+    
+    //PROPS:
+    const topText   = props.topText;    //TEXT THAT SHOWS TE TOP BAR.
+    const textBtn   = props.textBtn;    //OPTION THAN SHOWS TOP BUTTON AND ITS TEXT BUTTON
+    const onPress   = props.onPress;    //ON PRESS, JUST IF YOU SHOWS THE BUTTON.
+
 
     // ------------------------------------------------------------------------------------ //
     // ----------------------------------- MAIN FUNCTION ---------------------------------- //
@@ -39,36 +42,16 @@ const TopBar = ( props ) => {
 
     return (
         <View>
-
-            <View>
-
-                {/* IF IT'S SHOWING HOMESCREEN */}
-                { topText == 'HomeScreen' &&
-                <View style={styles.topBarContainer}>
-                    <Text 
-                    style={styles.headerText}
-                    onPress = {() => navigate('LoginScreen')}>
-                        Login
-                    </Text>
-                </View>
-                }{/* END IF IT'S SHOWING HOMESCREEN */}
-
-                {/* TODO: MODULARIZAR ESTE BOTÓN */}
-
-                {/* IF ISN'T SHOWING HOMESCREEN */}
-                { topText != 'HomeScreen' &&
-                <View style={styles.topBarContainer}>
-                    <Text style={styles.headerText}>{ topText }</Text>
-                    { textBtn &&
-                    <TouchableOpacity 
-                        style={styles.goHomeButton}
-                        onPress = { onPress }>
-                        <Text>{ textBtn }</Text>
-                    </TouchableOpacity>
-                    }
-                </View>
-                }{/* END IF ISN'T SHOWING HOMESCREEN */}
-
+        
+            <View style={styles.topBarContainer}>
+                <Text style={styles.headerText}>{ topText }</Text>
+                { textBtn &&
+                <TouchableOpacity 
+                    style={styles.goHomeButton}
+                    onPress = { onPress }>
+                    <Text>{ textBtn }</Text>
+                </TouchableOpacity>
+                }
             </View>
             
         </View>

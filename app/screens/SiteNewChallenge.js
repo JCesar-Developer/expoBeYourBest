@@ -13,7 +13,6 @@ const thisHeight = Dimensions.get("window").height * 1.057;
 
 const styles = StyleSheet.create({
     screenContainer: {
-        // flex: 1,
         height: thisHeight,
     },
     mainContainer: {
@@ -168,9 +167,8 @@ const Sitechallenge = ( props ) => {
         <SafeAreaView style = { styles.screenContainer }>
             <TopBar
                 topText     = 'NUEVO RETO'
-                topButton   = { true }
-                textBtn     = 'Volver atras'
-                onPress     = { () => navigate('SiteEvolution') }
+                textBtn     = 'Home'
+                onPress     = { () => navigate('HomeScreen') }
             />
 
             {/* MAIN SCREEN */}   
