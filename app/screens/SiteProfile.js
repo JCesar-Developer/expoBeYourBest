@@ -1,9 +1,11 @@
+import 'react-native-gesture-handler'
 import React from 'react';
-import { StyleSheet, View, Image, Dimensions,
-        SafeAreaView, useWindowDimensions, Alert,
-        TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, Dimensions, Text,
+        SafeAreaView, TouchableOpacity } from 'react-native';
 import { Input } from '@rneui/themed';
 import * as ImagePicker from 'expo-image-picker';
+import Animated from 'react-native-reanimated';
+import BottomSheet from 'reanimated-bottom-sheet';
 
 import { getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -95,8 +97,12 @@ const SiteProfile = ( props) => {
 
     }
 
-    const onChangeImgPressed = async () => {
-        
+    const onChangeImgPressed = () => {
+        console.log("Esto de momento funciona.");
+    };
+
+    const useImgPicker = async () => {
+
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -111,7 +117,7 @@ const SiteProfile = ( props) => {
             setImageURI(result.uri);
         }
 
-    };
+    }; //END USE_IMG_PICKER();
 
     const onChangePressed = () => {
 
@@ -134,11 +140,10 @@ const SiteProfile = ( props) => {
                     style={ styles.ImgContainer }
                     onPress={ onChangeImgPressed }>
                     <Image
-                        source={{uri: imageURI }}
+                        source={{ uri: imageURI }}
                         style={ styles.imgProfile }
                     />
                 </TouchableOpacity>
-
                 {/* END IMAGE */}
 
                 {/* SIGN IN FORM */}
