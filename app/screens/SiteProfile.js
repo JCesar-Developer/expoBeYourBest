@@ -59,6 +59,33 @@ const styles = StyleSheet.create({
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 0,
     },
+    panel: {
+        padding: 20,
+        backgroundColor: '#FFFFFF',
+        paddingTop: 20,
+      },
+      panelTitle: {
+        fontSize: 27,
+        height: 35,
+      },
+      panelSubtitle: {
+        fontSize: 14,
+        color: 'gray',
+        height: 30,
+        marginBottom: 10,
+      },
+      panelButton: {
+        padding: 13,
+        borderRadius: 10,
+        backgroundColor: '#FF6347',
+        alignItems: 'center',
+        marginVertical: 7,
+      },
+      panelButtonTitle: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: 'white',
+      },
 });
 
 const SiteProfile = ( props) => {
@@ -97,9 +124,27 @@ const SiteProfile = ( props) => {
 
     }
 
-    const onChangeImgPressed = () => {
-        console.log("Esto de momento funciona.");
-    };
+    const renderContentChangeImg = () => (
+        <View style={ styles.panel }>
+            <View style={{alignItems: 'center'}}>
+                <Text style={styles.panelTitle}>Actualizar foto</Text>
+                <Text style={styles.panelSubtitle}>Escoge tu imagen de perfil</Text>
+            </View>
+            <TouchableOpacity style={styles.panelButton} > 
+                <Text style={styles.panelButtonTitle}>Tomar foto</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.panelButton} onPress={ useImgPicker }>
+                <Text style={styles.panelButtonTitle}>Escoger de la galería</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.panelButton}
+                onPress={() => bs.current.snapTo(1)}>
+                <Text style={styles.panelButtonTitle}>Cancel</Text>
+            </TouchableOpacity>
+        </View>
+    ); //END RENDER_CONTENT_CHANGE_IMG
+
+    // const sheetRef = React.useRef(null);
 
     const useImgPicker = async () => {
 
@@ -123,8 +168,11 @@ const SiteProfile = ( props) => {
 
     }
 
+    const bs = React.createRef();
+    const fall = new Animated.Value(1);
+
     return(
-        <SafeAreaView style = { styles.screenContainer }>
+        <Animated.View style = { styles.screenContainer }>
             
             <TopBar
                 topText     = {'PERFIL'}
@@ -138,13 +186,14 @@ const SiteProfile = ( props) => {
                 {/* IMAGE */}
                 <TouchableOpacity 
                     style={ styles.ImgContainer }
-                    onPress={ onChangeImgPressed }>
+                    onPress={ () => bs.current.snapTo(0) }>
                     <Image
                         source={{ uri: imageURI }}
                         style={ styles.imgProfile }
                     />
                 </TouchableOpacity>
                 {/* END IMAGE */}
+
 
                 {/* SIGN IN FORM */}
                 <View style={ styles.input }>
@@ -235,7 +284,16 @@ const SiteProfile = ( props) => {
             />
             {/* END NAVBAR */}
 
-        </SafeAreaView>
+            <BottomSheet
+                ref={ bs }
+                snapPoints={['45%', '0%', '0%']}
+                renderContent={ renderContentChangeImg }
+                initialSnap={1}
+                callbackNode={ fall }
+                enabledGestureInteraction={ true }
+            />
+
+        </Animated.View>
     )
 
 }
