@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Image, Dimensions, View, 
         SafeAreaView, useWindowDimensions, Alert } from 'react-native';
-import { Input, Button } from 'react-native-elements';
+import { Input } from '@rneui/themed';
+import { Button } from '@rneui/base';
+
 
 import TopBar from '../../widgets/TopBar.js';
 

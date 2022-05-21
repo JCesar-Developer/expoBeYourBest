@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, 
         TouchableOpacity, Dimensions } from 'react-native';
-import { Icon, Input } from 'react-native-elements';
+import { Icon, Input } from '@rneui/themed';
 import { Picker } from '@react-native-picker/picker';
 import icons from '../models/Icons';
 

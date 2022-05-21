@@ -1,7 +1,7 @@
 import React, { useState }  from 'react';
 import { StyleSheet, View, Text, SafeAreaView, 
         ScrollView, Alert, Dimensions } from 'react-native';
-import { Input } from 'react-native-elements';
+import { Input } from '@rneui/themed';
 
 import TopBar from '../widgets/TopBar.js'
 import { NavBar } from '../widgets/NavBar.js'

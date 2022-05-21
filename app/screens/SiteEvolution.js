@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, FlatList, ActivityIndicator, LogBox } from 'react-native';
-import { ListItem, Badge, Icon } from 'react-native-elements';
+import { ListItem, Badge, Icon } from '@rneui/themed';
 
 import TopBar from '../widgets/TopBar.js';
 import { NavBar } from '../widgets/NavBar.js';

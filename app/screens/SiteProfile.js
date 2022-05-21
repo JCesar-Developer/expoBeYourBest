@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Image, Dimensions,
         SafeAreaView, useWindowDimensions, Alert,
         TouchableOpacity } from 'react-native';
-import { Input, Button } from 'react-native-elements';
+import { Input } from '@rneui/themed';
 
 import { getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
