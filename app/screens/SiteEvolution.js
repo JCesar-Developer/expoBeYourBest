@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, FlatList, ActivityIndicator, LogBox } from 'react-native';
-import { ListItem, Badge, Icon } from 'react-native-elements';
+import { ListItem, Badge, Icon } from '@rneui/themed';
 
 import TopBar from '../widgets/TopBar.js';
 import { NavBar } from '../widgets/NavBar.js';
 
-import db from '../utils/Firebase.js';
+import { db } from '../utils/Firebase.js';
 import { collection, getDocs } from 'firebase/firestore';
 
 const styles = StyleSheet.create({

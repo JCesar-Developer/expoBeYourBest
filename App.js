@@ -2,8 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //SCREENS
+import LoginScreen from './app/screens/Login/LoginScreen'
+import RegisterScreen from './app/screens/Login/RegisterScreen';
 import HomeScreen from './app/screens/HomeScreen'
-import LoginScreen from './app/screens/LoginScreen'
 import SiteContact from './app/screens/SiteContact';
 import SiteEvolution from './app/screens/SiteEvolution';
 import SiteNewChallenge from './app/screens/SiteNewChallenge';
@@ -20,8 +21,9 @@ const MyStack = () => {
         <NavigationContainer>
             <Stack.Navigator screenOptions = {{ headerShown: false }}>
 
-                <Stack.Screen name = "HomeScreen" component = { HomeScreen } />
                 <Stack.Screen name = "LoginScreen" component = { LoginScreen } />
+                <Stack.Screen name = "RegisterScreen" component = { RegisterScreen } />
+                <Stack.Screen name = "HomeScreen" component = { HomeScreen } />
 
                 <Stack.Screen name = "SiteContact" component = { SiteContact } />
                 <Stack.Screen name = "SiteEvolution" component = { SiteEvolution } />
@@ -47,6 +49,8 @@ export default function App() {
 
 /**
  * PENDIENTES:
- * - Terminar de implementar el categorias.
- * - 
+ * - Faltán mensajes especializados en LOG-IN (La constraseña no es correcta, el usuario no existe, etc...)
+ * - Terminar el 
+ * - Terminar de implementar el componente categorias.
+ * - Hacer que cada usuario tenga su propia colección de retos.
  */
