@@ -1,6 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+//NOTIFICATIONS
+import * as Notifications from 'expo-notifications';
+
 //SCREENS
 import LoginScreen from './app/screens/Login/LoginScreen'
 import RegisterScreen from './app/screens/Login/RegisterScreen';
