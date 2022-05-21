@@ -3,6 +3,7 @@ import { StyleSheet, View, Image, Dimensions,
         SafeAreaView, useWindowDimensions, Alert,
         TouchableOpacity } from 'react-native';
 import { Input } from '@rneui/themed';
+import * as ImagePicker from 'expo-image-picker';
 
 import { getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -94,23 +95,23 @@ const SiteProfile = ( props) => {
 
     }
 
-    const onChangeImgPressed = () => {
+    const onChangeImgPressed = async () => {
         
-        const options = {
-            tittle: 'Selecciona una imagen',
-            storageOptions: {
-                skipBackup: true,
-                path: 'images',
-            }
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 4],
+            quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.cancelled) {
+            setImageURI(result.uri);
         }
 
-        // launchImageLibrary(options, response => {
-
-        //     console.log('Response = '+ response);
-
-        // })
-
-    }
+    };
 
     const onChangePressed = () => {
 
