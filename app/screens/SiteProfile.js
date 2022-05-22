@@ -1,14 +1,14 @@
 import 'react-native-gesture-handler'
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Image, Dimensions, Text,
-        SafeAreaView, TouchableOpacity } from 'react-native';
+        SafeAreaView, TouchableOpacity, Alert } from 'react-native';
 import { Input } from '@rneui/themed';
 import * as ImagePicker from 'expo-image-picker';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 
 import { getAuth } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from '../utils/Firebase.js';
 
 
@@ -44,9 +44,13 @@ const SiteProfile = ( props ) => {
     useEffect(() => {
         getUserData();
 
+        //SET USER:
+        setUsername(userData.username);
+        setEmail(user.email);
+        setDescription(userData.description);
+        //END SET USER
+
         if ( props.route.params ) {
-            console.log( 'Hola desde SitePROFILE' );
-            console.log( props.route.params.base64 );
             setImageURI( "data:image/jpg;base64," + props.route.params.base64 );
         } else {
             setImageURI( 'https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg' )
@@ -87,12 +91,6 @@ const SiteProfile = ( props ) => {
         navigate('CameraScreen');
         bs.current.snapTo(1);
 
-        // if ( props.route.params ) {
-        //     console.log( 'Hola desde SitePROFILE' );
-        //     console.log( props.route.params.base64 );
-        //     setImageURI( "data:image/jpg;base64," + props.route.params.base64 );
-        // }
-
     };
 
 
@@ -106,7 +104,6 @@ const SiteProfile = ( props ) => {
             quality: 1,
         });
     
-        console.log(result);
         bs.current.snapTo(1);
         
         if (!result.cancelled) {
@@ -115,7 +112,21 @@ const SiteProfile = ( props ) => {
 
     }; //END USE_IMG_PICKER();
 
-    const onChangePressed = () => {
+    const onChangePressed = async () => {
+
+        await setDoc(doc( db, 'users', userUID ), {
+            photo: imageURI,
+            username: username,
+            description: description,
+        });
+        
+        console.log( userUID );
+        console.log( imageURI );
+        console.log( username );
+        console.log( email );
+        console.log( description );
+
+        Alert.alert('Cambios guardados con éxito');
 
     }
 
@@ -153,8 +164,8 @@ const SiteProfile = ( props ) => {
 
                     {/* INPUT USERNAME */}
                     <Input
-                        placeholder='Nombre de usuario*'
-                        inputStyle={{ fontSize: 13, color: 'white' }}
+                        placeholder= { userData.username }
+                        inputStyle={{ fontSize: 15, color: 'white' }}
                         leftIcon={{ name: 'account-circle' }}
                         errorMessage={ input_error_username }
                         errorStyle={ styles.errorStyle }
@@ -164,9 +175,9 @@ const SiteProfile = ( props ) => {
 
                     {/* LOGIN INPUT USERNAME */}
                     <Input
-                        placeholder='Email*'
+                        placeholder= { user.email }
                         containerStyle={{ marginTop: -15}}
-                        inputStyle={{ fontSize: 13, color: 'white' }}
+                        inputStyle={{ fontSize: 15, color: 'white' }}
                         leftIcon={{ name: 'mail' }}
                         errorMessage={ input_error_email }
                         errorStyle={ styles.errorStyle }
@@ -174,37 +185,33 @@ const SiteProfile = ( props ) => {
                     />
                     {/* END LOGIN INPUT USERNAME */}
 
-                    {/* LOGIN INPUT PASSWORD */}
                     <Input
-                        placeholder='Contraseña*'
+                        placeholder='Contraseña* (No funcional)'
                         containerStyle={{ marginTop: -15 }}
-                        inputStyle={{ fontSize: 13, color: 'white' }}
+                        inputStyle={{ fontSize: 15, color: 'white' }}
                         leftIcon={{ name: 'lock' }}
                         secureTextEntry
                         errorMessage={ input_error_password }
                         errorStyle={ styles.errorStyle }
                         onChangeText={ (value) => setPassword(value) }
                     />
-                    {/* END LOGIN INPUT PASSWORD */}
 
-                    {/* LOGIN INPUT REPEAT PASSWORD */}
                     <Input
-                        placeholder='Repite contraseña*'
+                        placeholder='Repite contraseña* (No funcional)'
                         containerStyle={{ marginTop: -15 }}
-                        inputStyle={{ fontSize: 13, color: 'white' }}
+                        inputStyle={{ fontSize: 15, color: 'white' }}
                         leftIcon={{ name: 'lock' }}
                         secureTextEntry
                         errorMessage={ input_error_repPassword }
                         errorStyle={ styles.errorStyle }
                         onChangeText={ (value) => setRepPassword(value) }
                     />
-                    {/* END LOGIN INPUT REPEAT PASSWORD */}
 
                     {/* INPUT DESCRIPTION */}
                     <Input
-                        placeholder='Describe tus proyectos'
+                        placeholder={ userData.description }
                         containerStyle={{ marginTop: 0, marginBottom: -10 }}
-                        inputStyle={{ fontSize: 13, color: 'white', height: 80,
+                        inputStyle={{ fontSize: 15, color: 'white', height: 80,
                         textAlignVertical:'top' }}
                         multiline={true}
                         maxLength={150}
