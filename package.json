@@ -28,7 +28,8 @@
     "react-native-splash-screen": "^3.3.0",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.7",
-    "reanimated-bottom-sheet": "^1.0.0-alpha.22"
+    "reanimated-bottom-sheet": "^1.0.0-alpha.22",
+    "expo-camera": "~12.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

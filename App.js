@@ -13,6 +13,8 @@ import SiteChallengeDetails from './app/screens/SiteChallengeDetails';
 import SiteProfile from './app/screens/SiteProfile';
 import SiteAchievements from './app/screens/SiteAchievements';
 
+import CameraScreen from './app/widgets/Camera'
+
 const Stack = createNativeStackNavigator();
 
 // --- NAVIGATION CONTAINERS --- //
@@ -32,6 +34,8 @@ const MyStack = () => {
                 <Stack.Screen name = "SiteChallengeDetails" component = { SiteChallengeDetails } />
                 <Stack.Screen name = "SiteProfile" component = { SiteProfile } />
                 <Stack.Screen name = "SiteAchievements" component = { SiteAchievements } />
+
+                <Stack.Screen name = "CameraScreen" component = { CameraScreen } />
 
             </Stack.Navigator>
         </NavigationContainer>

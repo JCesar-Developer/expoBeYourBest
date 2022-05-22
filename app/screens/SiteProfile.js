@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler'
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Image, Dimensions, Text,
         SafeAreaView, TouchableOpacity } from 'react-native';
 import { Input } from '@rneui/themed';
@@ -17,104 +17,42 @@ import { NavBar } from '../widgets/NavBar.js'
 
 const thisHeight = Dimensions.get("window").height * 1.057;
 
-const styles = StyleSheet.create({
-    screenContainer: {
-        height: thisHeight,
-    },
-    mainContainer: {
-        flex: 8
-    },
-    ImgContainer: {
-        marginTop: 15,
-        marginBottom: 10,
-        alignSelf: 'center',
-        borderWidth: 1,
-        borderRadius: 60,
-        borderColor: 'gray',
-    },
-    imgProfile: {
-        flex: 1,
-        width: 120,
-        maxHeight: 120,
-        resizeMode: 'contain',
-        backgroundColor: 'lightgray',
-        borderRadius: 60,
-    },
-    input: {
-        alignSelf: 'center',
-        width: '90%',
-        marginTop: -65,
-        paddingTop: 60,
-        borderWidth: 1,
-        borderColor: 'lightgray',
-        borderRadius: 10,
-        backgroundColor: '#353535',
-        zIndex: -1,
-    },
-    errorStyle: {
-        color: '#FF6666',
-        fontSize: 10,
-        marginLeft: 0,
-        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: {width: -1, height: 1},
-        textShadowRadius: 0,
-    },
-    panel: {
-        padding: 20,
-        backgroundColor: '#FFFFFF',
-        paddingTop: 20,
-      },
-      panelTitle: {
-        fontSize: 27,
-        height: 35,
-      },
-      panelSubtitle: {
-        fontSize: 14,
-        color: 'gray',
-        height: 30,
-        marginBottom: 10,
-      },
-      panelButton: {
-        padding: 13,
-        borderRadius: 10,
-        backgroundColor: '#FF6347',
-        alignItems: 'center',
-        marginVertical: 7,
-      },
-      panelButtonTitle: {
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: 'white',
-      },
-});
-
-const SiteProfile = ( props) => {
+const SiteProfile = ( props ) => {
 
     const { navigate } = props.navigation;
 
     const user          = getAuth().currentUser;
     const userUID       = user.uid.toString();
-    const [ imageURI, setImageURI ] = React.useState('https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg');
-    const [ userData, setUserData ] = React.useState('');
+    const [ imageURI, setImageURI ] = useState(null);
+    const [ userData, setUserData ] = useState('');
 
     //INPUT USER FORM
-    const [ username, setUsername] = React.useState('');
-    const [ email, setEmail ] = React.useState('');
-    const [ password, setPassword ] = React.useState('');
-    const [ repPassword, setRepPassword ] = React.useState('');
-    const [ description, setDescription ] = React.useState('');
+    const [ username, setUsername] = useState('');
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
+    const [ repPassword, setRepPassword ] = useState('');
+    const [ description, setDescription ] = useState('');
 
     //ERROR MESSAGES INPUT USER FORM
-    const [ input_error_username, setErrorUsername ] = React.useState('');
-    const [ input_error_email, setErrorEmail ] = React.useState('');
-    const [ input_error_password, setErrorPassword ] = React.useState('');
-    const [ input_error_repPassword, setErrorRepPassword ] = React.useState('');
-    const [ input_error_description, setErrorDescription ] = React.useState('');
+    const [ input_error_username, setErrorUsername ] = useState('');
+    const [ input_error_email, setErrorEmail ] = useState('');
+    const [ input_error_password, setErrorPassword ] = useState('');
+    const [ input_error_repPassword, setErrorRepPassword ] = useState('');
+    const [ input_error_description, setErrorDescription ] = useState('');
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         getUserData();
-    }, []);
+
+        if ( props.route.params ) {
+            console.log( 'Hola desde SitePROFILE' );
+            console.log( props.route.params.base64 );
+            setImageURI( "data:image/jpg;base64," + props.route.params.base64 );
+        } else {
+            setImageURI( 'https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg' )
+        }
+
+    }, [ props.route.params ]);
 
     const getUserData = async () => {
 
@@ -130,10 +68,10 @@ const SiteProfile = ( props) => {
                 <Text style={styles.panelTitle}>Actualizar foto</Text>
                 <Text style={styles.panelSubtitle}>Escoge tu imagen de perfil</Text>
             </View>
-            <TouchableOpacity style={styles.panelButton} > 
+            <TouchableOpacity style={styles.panelButton} onPress={ takePhotoFromCamera }> 
                 <Text style={styles.panelButtonTitle}>Tomar foto</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.panelButton} onPress={ useImgPicker }>
+            <TouchableOpacity style={styles.panelButton} onPress={ choosePhotoFromLibrary }>
                 <Text style={styles.panelButtonTitle}>Escoger de la galería</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -144,9 +82,21 @@ const SiteProfile = ( props) => {
         </View>
     ); //END RENDER_CONTENT_CHANGE_IMG
 
-    // const sheetRef = React.useRef(null);
+    const takePhotoFromCamera = () => {
+        
+        navigate('CameraScreen');
+        bs.current.snapTo(1);
 
-    const useImgPicker = async () => {
+        // if ( props.route.params ) {
+        //     console.log( 'Hola desde SitePROFILE' );
+        //     console.log( props.route.params.base64 );
+        //     setImageURI( "data:image/jpg;base64," + props.route.params.base64 );
+        // }
+
+    };
+
+
+    const choosePhotoFromLibrary = async () => {
 
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -157,7 +107,8 @@ const SiteProfile = ( props) => {
         });
     
         console.log(result);
-    
+        bs.current.snapTo(1);
+        
         if (!result.cancelled) {
             setImageURI(result.uri);
         }
@@ -174,11 +125,13 @@ const SiteProfile = ( props) => {
     return(
         <Animated.View style = { styles.screenContainer }>
             
+            {/* TOPBAR */}
             <TopBar
                 topText     = {'PERFIL'}
                 textBtn     = 'Home'
                 onPress     = { () => navigate('HomeScreen') }
             />
+            {/* END TOPBAR */}
 
             {/* MAIN CONTAINER */}
             <View style = { styles.mainContainer} >
@@ -187,10 +140,10 @@ const SiteProfile = ( props) => {
                 <TouchableOpacity 
                     style={ styles.ImgContainer }
                     onPress={ () => bs.current.snapTo(0) }>
-                    <Image
-                        source={{ uri: imageURI }}
-                        style={ styles.imgProfile }
-                    />
+                        <Image
+                            source={{ uri: imageURI }}
+                            style={ styles.imgProfile }
+                        />
                 </TouchableOpacity>
                 {/* END IMAGE */}
 
@@ -299,3 +252,79 @@ const SiteProfile = ( props) => {
 }
 
 export default SiteProfile;
+
+const styles = StyleSheet.create({
+    screenContainer: {
+        height: thisHeight,
+    },
+    mainContainer: {
+        flex: 8
+    },
+    ImgContainer: {
+        marginTop: 15,
+        marginBottom: 10,
+        alignSelf: 'center',
+        borderWidth: 1,
+        borderRadius: 60,
+        borderColor: 'gray',
+    },
+    imgProfile: {
+        flex: 1,
+        width: 120,
+        maxHeight: 120,
+        resizeMode: 'contain',
+        backgroundColor: 'lightgray',
+        borderRadius: 60,
+    },
+    input: {
+        alignSelf: 'center',
+        width: '90%',
+        marginTop: -65,
+        paddingTop: 60,
+        borderWidth: 1,
+        borderColor: 'lightgray',
+        borderRadius: 10,
+        backgroundColor: '#353535',
+        zIndex: -1,
+    },
+    errorStyle: {
+        color: '#FF6666',
+        fontSize: 10,
+        marginLeft: 0,
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 0,
+    },
+    panel: {
+        padding: 20,
+        backgroundColor: '#FFFFFF',
+        paddingTop: 20,
+      },
+      panelTitle: {
+        fontSize: 27,
+        height: 35,
+      },
+      panelSubtitle: {
+        fontSize: 14,
+        color: 'gray',
+        height: 30,
+        marginBottom: 10,
+      },
+      panelButton: {
+        padding: 13,
+        borderRadius: 10,
+        backgroundColor: '#FF6347',
+        alignItems: 'center',
+        marginVertical: 7,
+      },
+      panelButtonTitle: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: 'white',
+      },
+      container: {
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+      }
+});
